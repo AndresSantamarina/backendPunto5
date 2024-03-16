@@ -11,11 +11,11 @@ const recetaSchema = new Schema({
     imagen: {
         type: String,
         required: true,
-        // validate: {
-        //     validator: function (v) {
-        //         return /^(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|png)$/.test(v);
-        //     }
-        // }
+        validate: {
+            validator: function (v) {
+                return /^(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|jpeg|png)$/.test(v);
+            }
+        }
     },
     categoria: {
         type: String,
