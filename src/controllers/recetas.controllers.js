@@ -1,6 +1,6 @@
 import Receta from "../database/model/receta.js";
 
-export const listarRecetas = async (req, res)=>{
+export const listarRecetas = async (req, res) => {
     try {
         const recetas = await Receta.find();
         res.status(200).json(recetas)
@@ -11,7 +11,7 @@ export const listarRecetas = async (req, res)=>{
     }
 }
 
-export const obtenerReceta = async (req,res)=>{
+export const obtenerReceta = async (req, res) => {
     try {
         const recetaBuscada = await Receta.findById(req.params.id)
         res.status(200).json(recetaBuscada)
@@ -22,7 +22,7 @@ export const obtenerReceta = async (req,res)=>{
     }
 }
 
-export const crearReceta = async (req, res)=>{
+export const crearReceta = async (req, res) => {
     try {
         const recetaNueva = new Receta(req.body)
         await recetaNueva.save()
@@ -36,10 +36,10 @@ export const crearReceta = async (req, res)=>{
     }
 }
 
-export const editarReceta = async (req,res)=>{
+export const editarReceta = async (req, res) => {
     try {
         const buscarReceta = await Receta.findById(req.params.id)
-        if(!buscarReceta){
+        if (!buscarReceta) {
             return res.status(404).json({
                 mensaje: "No se puedo editar la receta, el id es incorrecto"
             })
@@ -51,6 +51,25 @@ export const editarReceta = async (req,res)=>{
     } catch (error) {
         res.status(500).json({
             mensaje: "Ocurrió un error al intentar editar la receta"
+        })
+    }
+}
+
+export const borrarReceta = async (req, res) => {
+    try {
+        const buscarReceta = await Receta.findById(req.params.id)
+        if (!buscarReceta) {
+            return res.status(404).json({
+                mensaje: "No se puedo eliminar la receta, el id es incorrecto"
+            })
+        }
+        await Receta.findByIdAndDelete(req.params.id)
+        res.status(200).json({
+            mensaje: "La receta fue eliminada correctamente"
+        })
+    } catch (error) {
+        res.status(500).json({
+            mensaje: "Ocurrió un error al intentar eliminar la receta"
         })
     }
 }
