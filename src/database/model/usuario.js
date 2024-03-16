@@ -1,11 +1,24 @@
-import mongoose, {Schema} from "mongoose";
+import mongoose, { Schema } from "mongoose";
 
 const usuarioSchema = new Schema({
-    email:{
-
+    email: {
+        type: String,
+        required: true,
+        unique: true,
+        validate: {
+            validator: function (v) {
+                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+            }
+        }
     },
-    contraseña:{
-
+    contraseña: {
+        type: String,
+        required: true,
+        validate: {
+            validator: function (v) {
+                return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,30}$/.test(v);
+            }
+        }
     }
 })
 
