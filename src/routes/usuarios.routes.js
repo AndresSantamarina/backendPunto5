@@ -1,8 +1,9 @@
-// import { Router } from "express";
+import { Router } from "express";
+import { crearUsuario } from "../controllers/usuarios.controllers.js";
 
-// const router = Router()
+const router = Router()
+
+router.route('/usuarios').post(crearUsuario)
 
 
-
-
-// export default router;
+export default router;

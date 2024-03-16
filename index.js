@@ -5,7 +5,7 @@ import morgan from 'morgan';
 import { fileURLToPath } from 'url';
 import path from 'path';
 import recetasRouter from './src/routes/recetas.routes.js'
-// import usuariosRouter from './src/routes/usuarios.routes.js'
+import usuariosRouter from './src/routes/usuarios.routes.js'
 import './src/database/database.js'
 
 
@@ -26,4 +26,4 @@ const __dirname = path.dirname(__filename)
 app.use(express.static(path.join(__dirname, '/public')))
 
 app.use('/api', recetasRouter)
-// app.use('/api', usuariosRouter)
+app.use('/api', usuariosRouter)
