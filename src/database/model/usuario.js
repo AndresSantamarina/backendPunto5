@@ -5,18 +5,22 @@ const usuarioSchema = new Schema({
         type: String,
         required: true,
         unique: true,
+        minLength: 4,
+        maxLength: 50,
         validate: {
             validator: function (v) {
-                return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v);
+                return /^[a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,6}$/.test(v);
             }
         }
     },
     password: {
         type: String,
         required: true,
+        minLength: 8,
+        maxLength: 30,
         validate: {
             validator: function (v) {
-                return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,30}$/.test(v);
+                return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}$/.test(v);
             }
         }
     }

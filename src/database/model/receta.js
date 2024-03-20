@@ -13,14 +13,14 @@ const recetaSchema = new Schema({
         required: true,
         validate: {
             validator: function (v) {
-                return /^(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|gif|jpeg|png)$/.test(v);
+                return /(http(s?):)([/|.|\w|\s|-])*\.(?:jpg|jpeg|gif|png)/.test(v);
             }
         }
     },
     categoria: {
         type: String,
         required: true,
-        enum: ['Infusiones', 'Batidos', 'dulce', 'salado']
+        enum: ['Dulce', 'Salado', 'Agridulce', 'Bebida']
     },
     ingredientes: {
         type: String,
